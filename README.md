@@ -19,5 +19,8 @@ SO THAT I can satisfy my hunger
 ```
 GIVEN a webpage with cuisine inputs
 WHEN I search my location
-Then I am presented with a list of local restaurants that match my selected cuisine
+THEN I am presented with a list of local restaurants that match my selected cuisine
 WHEN I view the restaurants
+THEN I am presented with the name, address, phone number, and a thumbnail
+WHEN I select a specific restaurant
+THEN I am presented with a map and a link to the menu
