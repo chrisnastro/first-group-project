@@ -1,16 +1,10 @@
-Based on inclass activity 6.3
-
-Uses leaflet https://leafletjs.com/
-
-https://docs.github.com/en/rest/reference/repos#list-organization-repositories
-
 # Cuisine Locator
 
 ## User Story
 
 ```
 AS A Foodie looking for somewhere to eat, 
-I WANT to be able to find local cuisine based on my current location,
+I WANT to be able to find different cuisine based on my current location,
 SO THAT I can satisfy my hunger
 ```
 
