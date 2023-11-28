@@ -7,19 +7,19 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 // Blue marker pinning to location
-var marker = L.marker([40.7128, -74.0060]).addTo(map);
+var marker = L.marker([40.7330, -74.0028]).addTo(map);
 marker.bindPopup("<b>Restaurant 1</b>");
 
-// var marker = L.marker([51.48, -0.08]).addTo(map);
+var marker = L.marker([40.7330, -74.0040]).addTo(map);
+marker.bindPopup("<b>Restaurant 2</b>");
+
+// var marker = L.marker([40.3330, -74.0040]).addTo(map);
 // marker.bindPopup("<b>Restaurant 2</b>");
 
-// var marker = L.marker([51.48, -0.06]).addTo(map);
+// var marker = L.marker([40.3330, -74.0040]).addTo(map);
 // marker.bindPopup("<b>Restaurant 2</b>");
 
-// var marker = L.marker([51.48, -0.08]).addTo(map);
-// marker.bindPopup("<b>Restaurant 2</b>");
-
-// var marker = L.marker([51.48, -0.08]).addTo(map);
+// var marker = L.marker([40.5330, -74.0040]).addTo(map);
 // marker.bindPopup("<b>Restaurant 2</b>");
 
 // Stand alone pop-up
