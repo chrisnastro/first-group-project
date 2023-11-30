@@ -11,27 +11,23 @@
 </head>
 
 <body>
+    <div class="flex-row align-center justify-center min-vh-100 bg-primary container">
+        <div class="form-body col-3">
+            <h2 class="search-title">Cuisine Locator</h2>
 
-    <div class="container">
-        <div class="row">
-            <div class="form-body col-3">
-                <h2 class="search-title">Cuisine Locator</h2>
+            <form id="search-form">
+                <input id="foodtype-input" class="food-type" type="text" placeholder="Type of Cuisine">
+                <br>
+                <input id="location-input" class="restaurant-location" type="text" placeholder="Location">
+                <button id="search-button">Search!</button>
+            </form>
+        </div>
 
-                <form id="search-form">
-                    <input id="foodtype-input" class="food-type" type="text" placeholder="Type of Cuisine">
-                    <br>
-                    <input id="location-input" class="restaurant-location" type="text" placeholder="Location">
-                    <button id="search-button">Search!</button>
-                </form>
-            </div>
+        <div id="results-container hide col-9">
+            <!-- search results will appear here -->
 
-            <div id="results-container hide col-9">
-                <!-- search results will appear here -->
-
-            </div>
         </div>
     </div>
-
 
 
 
