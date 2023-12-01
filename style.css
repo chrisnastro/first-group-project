@@ -1,51 +1,50 @@
-
 body {
-    background-color: #999fa6; 
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8c291; /* Peach */
 }
 
-.search-container {
-    margin: 50px auto; 
+.container {
+    max-width: 100%;
+    margin-top: 50px;
+}
+
+.form-body {
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgb(0, 0, 0,); 
-    background-color: #fff; 
 }
 
-.card-title {
+.search-title {
+    color: #e74c3c; /* Tomato */
     text-align: center;
-    color: #007bff; 
+    font-size: 24px;
 }
 
 .food-type,
-.restaurant-location {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ced4da; 
-    border-radius: 5px;
-}
-
+.restaurant-location,
 #search-button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    margin-bottom: 10px;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
+}
+
+#search-button {
+    background-color: #2ecc71; /* Mint */
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease-in-out;
 }
 
 #search-button:hover {
-    background-color: #0056b3; 
+    background-color: #27ae60; /* Darker Mint on hover */
 }
 
 #results-container {
+    display: none;
     margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-    .search-container {
-        width: 90%;
-    }
 }
