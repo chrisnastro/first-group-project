@@ -1,6 +1,9 @@
 var userLocationInput = document.getElementById("location-input");
-var userFoodType = document.getElementById("foodtype-input");
+// var userFoodType = document.getElementById("foodtype-input");
 var searchButton = document.getElementById("search-button");
+var resultsContainerEl = document.getElementById("results-container");
+
+
 
 const locationOptions = {
 	method: 'GET',
@@ -19,30 +22,84 @@ const searchOptions = {
 };
 
 function getLocationUrl(location) {
-return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchLocation?query=' + location;
+	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchLocation?query=' + location;
 }
 
 function getSearchUrl(locationId) {
 	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=' + locationId;
 }
 
+// function getRestaurantUrl(foodType) {
+// 	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/getRestaurantDetails?restaurantsId=establishmentTypeAndCuisineTags' + foodType;
+// }
+// console.log(foodType);
+
+
+function displayRestaurantInfo(data) {
+	console.log(data);
+	// orderListEl = document.createElement("ol");
+	for (let i = 0; i < 10; i++) {
+
+		var card = document.createElement("div");
+		card.classList.add("card");
+		var cardBody = document.createElement("div");
+		cardBody.classList.add("card-body");
+		var cardTitle = document.createElement("h5");
+		cardTitle.classList.add("card-title");
+		cardTitle.textContent = data[i].name;
+		var cardText = document.createElement("p");
+		cardText.classList.add("card-text");
+		cardText.textContent = data[i].establishmentTypeAndCuisineTags;
+		var cardRating = document.createElement("p");
+		cardRating.classList.add("card-text");
+		cardRating.textContent = "Rating: " + data[i].averageRating;
+		
+
+		cardBody.append(cardTitle, cardText, cardRating);
+
+		card.append(cardBody)
+		resultsContainerEl.appendChild(card);
+	}
+
+}
+
 function renderLocation(location) {
 
-fetch(getLocationUrl(location), locationOptions)
-.then(function (response) {
-	return response.json();
-})
-.then(function (data) {
-	 return fetch(getSearchUrl(data.data[0].locationId), searchOptions)
-})
-.then(function (response) {
-	return response.json();
-})
-.then(function(data){console.log(data)}) 
+	fetch(getLocationUrl(location), locationOptions)
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			return fetch(getSearchUrl(data.data[0].locationId), searchOptions)
+		})
+		.then(function (response) {
+			return response.json();
+		})
+
+		.then(function (data) { displayRestaurantInfo(data.data.data) })
+	//	.catch(error)
+
 };
 
 
-const restaurantUrl = 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/getRestaurantDetails?restaurantsId=Restaurant_Review-g60763-d11918545-Reviews-Boucherie_West_Village-New_York_City_New_York';
+
+
+// function renderFoodType(foodType) {
+// fetch(getRestaurantUrl(foodType), restaurantOptions)
+// .then(function (response) {
+// 	return response.json();
+// })
+// .then(function (data) {
+// 	return fetch(getSearchUrl(data.data[0].establishmentTypeAndCuisineTags), searchOptions)
+// })
+// .then(function (data) {
+// 	return response.json();
+// })
+// .then(function (data) {console.log(data)})
+// };
+
+
+// const restaurantUrl = 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/getRestaurantDetails?restaurantsId=Restaurant_Review-g60763-d11918545-Reviews-Boucherie_West_Village-New_York_City_New_York';
 const restaurantOptions = {
 	method: 'GET',
 	headers: {
@@ -51,15 +108,21 @@ const restaurantOptions = {
 	}
 };
 
-searchButton.addEventListener("click", function(event) {
+searchButton.addEventListener("click", function (event) {
 	event.preventDefault();
 
 	var location = userLocationInput.value;
-	var foodType = userFoodType.value;
+	// var foodType = userFoodType.value;
+
+	console.log("location: ", location)
+	// console.log("food-type: ", foodType)
+	console.log("location datatype: ", typeof location)
 
 	localStorage.setItem("location-input", location);
-	localStorage.setItem("foodtype-input", foodType);
+	// localStorage.setItem("foodtype-input", foodType);
+	// renderFoodType(foodType);
 	renderLocation(location);
+
 })
 
 // fetch (searchUrl, searchOptions).then((response) => response.json()).then((data) => console.log(data));
