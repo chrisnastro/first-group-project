@@ -23,7 +23,6 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // marker.bindPopup("<b>Restaurant 2</b>");
 
 var geocoder = L.Control.geocoder({
-  defaultMarkGeocode: false
 })
   .on('markgeocode', function(e) {
     var bbox = e.geocode.bbox;
@@ -39,9 +38,7 @@ var geocoder = L.Control.geocoder({
 
 // Stand alone pop-up
 var popup = L.popup()
-  .setLatLng([51.513, -0.09])
-  .setContent("I am a standalone popup.")
-  .openOn(map);
+  
   function onMapClick(e) {
     alert("You clicked the map at " + e.latlng);
 }
