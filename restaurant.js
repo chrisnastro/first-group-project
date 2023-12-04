@@ -3,19 +3,7 @@ var userLocationInput = document.getElementById("location-input");
 var searchButton = document.getElementById("search-button");
 var resultsContainerEl = document.getElementById("results-container");
 
-// searchButton.addEventListener("click", function() { 
-// 	document.body.style.cursor = "wait"; 
 
-// 	document.getElementById("search-button") 
-// 		.style.backgroundColor = "gray"; 
-
-// 	document.getElementById("search-button") 
-// 		.style.cursor = "wait"; 
-// 	}); 
-
-// function cursorDefault() {
-// 	document.body.style.cursor = "auto"; 
-// };
 
 const locationOptions = {
 	method: 'GET',
@@ -26,6 +14,14 @@ const locationOptions = {
 };
 
 const searchOptions = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '261cf2e304msh1aa969bcf7b92f1p18970ejsna94988a201e7',
+		'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
+	}
+};
+
+const restOptions = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Key': '261cf2e304msh1aa969bcf7b92f1p18970ejsna94988a201e7',
@@ -45,16 +41,30 @@ function getSearchUrl(locationId) {
 	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=' + locationId;
 }
 
-// function getRestaurantUrl(foodType) {
-// 	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/getRestaurantDetails?restaurantsId=establishmentTypeAndCuisineTags' + foodType;
-// }
-// console.log(foodType);
+function getRestaurantUrl(restaurantId) {
+	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/getRestaurantDetails?restaurantsId=' + restaurantId;
+}
 
 
-function displayRestaurantInfo(data) {
+function renderDetails(details) {
+	fetch(getSearchUrl(details), restOptions)
+	.then(function (response) {
+		return response.json();
+	})
+		.then(function (data) {
+		return fetch(getRestaurantUrl(data[i].restaurantId), restOptions)
+		})
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {displayRestDetails(data)})
+	console.log(data);
+}
+
+
+function displayCityRestaurants(data) {
 	console.log(data);
 	resultsContainerEl.innerHTML = '';
-	// orderListEl = document.createElement("ol");
 	for (let i = 0; i < 10; i++) {
 
 		var card = document.createElement("div");
@@ -81,7 +91,7 @@ function displayRestaurantInfo(data) {
 
 		card.append(cardBody)
 		resultsContainerEl.appendChild(card);
-// cursorDefault();
+
 	}
 
 }
@@ -99,7 +109,7 @@ function displayRestaurantInfo(data) {
 			return response.json();
 		})
 
-		.then(function (data) { displayRestaurantInfo(data.data.data) })
+		.then(function (data) { displayCityRestaurants(data.data.data) })
 	//	.catch(error)
 
 };
@@ -107,29 +117,11 @@ function displayRestaurantInfo(data) {
 
 
 
-// function renderFoodType(foodType) {
-// fetch(getRestaurantUrl(foodType), restaurantOptions)
-// .then(function (response) {
-// 	return response.json();
-// })
-// .then(function (data) {
-// 	return fetch(getSearchUrl(data.data[0].establishmentTypeAndCuisineTags), searchOptions)
-// })
-// .then(function (data) {
-// 	return response.json();
-// })
-// .then(function (data) {console.log(data)})
-// };
+
 
 
 // const restaurantUrl = 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/getRestaurantDetails?restaurantsId=Restaurant_Review-g60763-d11918545-Reviews-Boucherie_West_Village-New_York_City_New_York';
-const restaurantOptions = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '261cf2e304msh1aa969bcf7b92f1p18970ejsna94988a201e7',
-		'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
-	}
-};
+
 
 searchButton.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -146,7 +138,3 @@ searchButton.addEventListener("click", function (event) {
 	renderLocation(location);
 
 })
-
-// fetch (searchUrl, searchOptions).then((response) => response.json()).then((data) => console.log(data));
-// fetch (url, options).then((response) => response.json()).then((data) => console.log(data));
-// fetch (locationUrl, locationOptions).then((response) => response.json()).then((data) => console.log(data));
