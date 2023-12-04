@@ -75,7 +75,7 @@ function displayRestaurantInfo(data) {
 		cardBody.append(cardTitle, cardText, cardRating);
 
 		card.append(cardBody)
-		resultsContainerEl.appendChild(card);
+		resultsContainerEl.append(card);
 // cursorDefault();
 	}
 
