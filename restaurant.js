@@ -70,9 +70,14 @@ function displayRestaurantInfo(data) {
 		var cardRating = document.createElement("p");
 		cardRating.classList.add("card-text");
 		cardRating.textContent = "Rating: " + data[i].averageRating;
+		var img = document.createElement("img");
+		img.classList.add("card-img");
+		img.setAttribute("src", data[i].thumbnail.photo.photoSizes[2].url);
+	
+		console.log(data[i].thumbnail.photo.photoSizes[2].url);
 
 
-		cardBody.append(cardTitle, cardText, cardRating);
+		cardBody.append(cardTitle, cardText, cardRating, img);
 
 		card.append(cardBody)
 		resultsContainerEl.appendChild(card);
