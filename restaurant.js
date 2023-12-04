@@ -3,7 +3,19 @@ var userLocationInput = document.getElementById("location-input");
 var searchButton = document.getElementById("search-button");
 var resultsContainerEl = document.getElementById("results-container");
 
+// searchButton.addEventListener("click", function() { 
+// 	document.body.style.cursor = "wait"; 
 
+// 	document.getElementById("search-button") 
+// 		.style.backgroundColor = "gray"; 
+
+// 	document.getElementById("search-button") 
+// 		.style.cursor = "wait"; 
+// 	}); 
+
+// function cursorDefault() {
+// 	document.body.style.cursor = "auto"; 
+// };
 
 const locationOptions = {
 	method: 'GET',
@@ -21,6 +33,10 @@ const searchOptions = {
 	}
 };
 
+function refresh() {
+	window.parent.location = window.parent.location.href;
+}
+
 function getLocationUrl(location) {
 	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchLocation?query=' + location;
 }
@@ -37,6 +53,7 @@ function getSearchUrl(locationId) {
 
 function displayRestaurantInfo(data) {
 	console.log(data);
+	resultsContainerEl.innerHTML = '';
 	// orderListEl = document.createElement("ol");
 	for (let i = 0; i < 10; i++) {
 
@@ -53,17 +70,18 @@ function displayRestaurantInfo(data) {
 		var cardRating = document.createElement("p");
 		cardRating.classList.add("card-text");
 		cardRating.textContent = "Rating: " + data[i].averageRating;
-		
+
 
 		cardBody.append(cardTitle, cardText, cardRating);
 
 		card.append(cardBody)
 		resultsContainerEl.appendChild(card);
+// cursorDefault();
 	}
 
 }
 
-function renderLocation(location) {
+	function renderLocation(location) {
 
 	fetch(getLocationUrl(location), locationOptions)
 		.then(function (response) {
@@ -110,7 +128,6 @@ const restaurantOptions = {
 
 searchButton.addEventListener("click", function (event) {
 	event.preventDefault();
-
 	var location = userLocationInput.value;
 	// var foodType = userFoodType.value;
 
