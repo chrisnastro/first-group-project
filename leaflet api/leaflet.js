@@ -22,43 +22,43 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // var marker = L.marker([40.5330, -74.0040]).addTo(map);
 // marker.bindPopup("<b>Restaurant 2</b>");
 
-var geocoder = L.Control.geocoder({
-})
-  .on('markgeocode', function(e) {
+var geocoder = L.Control.geocoder({})
+  .on("markgeocode", function (e) {
     var bbox = e.geocode.bbox;
     var poly = L.polygon([
       bbox.getSouthEast(),
       bbox.getNorthEast(),
       bbox.getNorthWest(),
-      bbox.getSouthWest()
+      bbox.getSouthWest(),
     ]).addTo(map);
+
     map.fitBounds(poly.getBounds());
+
+    // Set max zoom after search
+    setTimeout(function () {
+      map.setZoom(13);
+    }, 100);
+    // var center = map.getCenter();
+    // var marker = L.marker(center).addTo(map);
   })
   .addTo(map);
 
 // Stand alone pop-up
-var popup = L.popup()
-  
-  function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
-}
-
 map.on("click", onMapClick);
 
 // Pop-up on map click
 function onMapClick(e) {
   popup
     .setLatLng(e.latlng)
-    .setContent("You clicked the map at " + e.latlng.toString())
+    .setContent("You clicked at " + e.latlng.toString())
     .openOn(map);
 }
 
 var oldMarker = L.markerClusterGroup();
 var newMarker = L.geoJSON(data, {
   onEachFeature: function (feature, layer) {
-    layer.bindPopup(feature.properties.name)
-  }
-  
+    layer.bindPopup(feature.properties.name);
+  },
 });
 newMarker.addTo(marker);
 oldMarker.addTo(map);
