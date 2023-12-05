@@ -45,5 +45,11 @@ body {
 }
 
 #results-container {
+
     margin-top: 20px;
+}
+
+.card-img {
+    width: 150px;
+    height: 150px;
 }
