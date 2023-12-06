@@ -14,6 +14,9 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
+    margin-top: -25px;
+    margin-left: 25px;
+    margin-bottom: 25px;
 }
 
 .search-title {
@@ -45,11 +48,25 @@ body {
 }
 
 #results-container {
-
     margin-top: 20px;
 }
 
 .card-img {
     width: 150px;
     height: 150px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.more-button {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: 0.3s ease-in-out;
+    margin-left: 10px;
+}
+
+.more-button:hover {
+    background-color: #27ae60;
 }
