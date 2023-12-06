@@ -45,11 +45,24 @@ body {
 }
 
 #results-container {
-
     margin-top: 20px;
 }
 
 .card-img {
     width: 150px;
     height: 150px;
+}
+
+.more-button {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: 0.3s ease-in-out;
+    margin-left: 10px;
+}
+
+.more-button:hover {
+    background-color: #27ae60;
 }
