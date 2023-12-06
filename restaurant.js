@@ -45,9 +45,6 @@ function getRestaurantUrl(restaurantsId) {
 	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/getRestaurantDetails?restaurantsId=' + restaurantsId;
 }
 
-
-
-
 function displayRestaurantDetails(restaurantsId) {
 	console.log(restaurantsId);
 	fetch(getRestaurantUrl(restaurantsId), restOptions).then(function (response) {
@@ -62,7 +59,6 @@ function displayRestaurantDetails(restaurantsId) {
 			var cardAddress = document.createElement("p");
 			cardAddress.classList.add("card-text");
 			cardAddress.textContent = data.data.location.address;
-
 			console.log(data.data.location.address);
 			// h4El.setAttribute("style", "zIndex: 1");
 			cardBody.append(cardAddress);
@@ -103,17 +99,13 @@ function displayCityRestaurants(data) {
 		img.setAttribute("src", data[i].thumbnail.photo.photoSizes[2].url);
 
 		// console.log(data[i].thumbnail.photo.photoSizes[2].url);
-
-
 		cardBody.append(cardTitle, cardText, cardRating, img, moreButton);
 
 		card.append(cardBody)
 		resultsContainerEl.appendChild(card);
-
 	}
 
 }
-
 function renderLocation(location) {
 
 	fetch(getLocationUrl(location), locationOptions)
@@ -129,14 +121,11 @@ function renderLocation(location) {
 
 		.then(function (data) { displayCityRestaurants(data.data.data) })
 
-
 };
-
 
 searchButton.addEventListener("click", function (event) {
 	event.preventDefault();
 	var location = userLocationInput.value;
-
 
 	console.log("location: ", location)
 
@@ -147,4 +136,3 @@ searchButton.addEventListener("click", function (event) {
 	renderLocation(location);
 
 });
-
