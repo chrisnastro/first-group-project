@@ -5,6 +5,7 @@ var resultsContainerEl = document.getElementById("results-container");
 var modal = document.getElementById('modal');
 var mainResults = document.getElementById("main-results");
 
+
 const locationOptions = {
 	method: 'GET',
 	headers: {
@@ -45,33 +46,16 @@ function getRestaurantUrl(restaurantsId) {
 	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/getRestaurantDetails?restaurantsId=' + restaurantsId;
 }
 
-function displayRestaurantDetails(restaurantsId) {
-	console.log(restaurantsId);
-	fetch(getRestaurantUrl(restaurantsId), restOptions).then(function (response) {
-		return response.json();
-	})
-		.then(function (data) {
-			console.log(data)
-			var card = document.createElement("div");
-			card.classList.add("card");
-			var cardBody = document.createElement("div");
-			cardBody.classList.add("card-body");
-			var cardAddress = document.createElement("p");
-			cardAddress.classList.add("card-text");
-			cardAddress.textContent = data.data.location.address;
-			console.log(data.data.location.address);
-			// h4El.setAttribute("style", "zIndex: 1");
-			cardBody.append(cardAddress);
-			card.append(cardBody);
-			mainResults.appendChild(card);
-		})
-}
+
 
 
 function displayCityRestaurants(data) {
 	console.log(data);
+
 	resultsContainerEl.innerHTML = '';
 	for (let i = 0; i < 10; i++) {
+
+
 
 		var card = document.createElement("div");
 		card.classList.add("card");
@@ -97,15 +81,16 @@ function displayCityRestaurants(data) {
 		var img = document.createElement("img");
 		img.classList.add("card-img");
 		img.setAttribute("src", data[i].thumbnail.photo.photoSizes[2].url);
-
-		// console.log(data[i].thumbnail.photo.photoSizes[2].url);
+		
 		cardBody.append(cardTitle, cardText, cardRating, img, moreButton);
-
 		card.append(cardBody)
 		resultsContainerEl.appendChild(card);
 	}
 
-}
+};
+
+
+
 function renderLocation(location) {
 
 	fetch(getLocationUrl(location), locationOptions)
