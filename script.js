@@ -14,29 +14,3 @@ var mainResults = document.getElementById("main-results");
 // }
 
 
-function displayRestaurantDetails(restaurantsId) {
-	mainResults.innerHTML = '';
-	window.open("./details.html");
-	console.log(restaurantsId);
-
-	fetch(getRestaurantUrl(restaurantsId), restOptions).then(function (response) {
-		return response.json();
-	})
-		.then(function (data) {
-			console.log(data)
-			var card = document.createElement("div");
-			card.classList.add("card");
-			var cardBody = document.createElement("div");
-			cardBody.classList.add("card-body");
-			var cardAddress = document.createElement("p");
-			cardAddress.classList.add("card-text");
-			cardAddress.textContent = data.data.location.address;
-			console.log(data.data.location.address);
-			// h4El.setAttribute("style", "zIndex: 1");
-
-		})
-
-	cardBody.append(cardAddress);
-	card.append(cardBody);
-	mainResults.appendChild(card);
-};
