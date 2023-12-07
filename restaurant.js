@@ -1,10 +1,8 @@
 var userLocationInput = document.getElementById("location-input");
-// var userFoodType = document.getElementById("foodtype-input");
 var searchButton = document.getElementById("search-button");
 var resultsContainerEl = document.getElementById("results-container");
 var modal = document.getElementById('modal');
 var mainResults = document.getElementById("main-results");
-
 
 const locationOptions = {
 	method: 'GET',
@@ -46,8 +44,32 @@ function getRestaurantUrl(restaurantsId) {
 	return 'https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/getRestaurantDetails?restaurantsId=' + restaurantsId;
 }
 
+function displayRestaurantDetails(restaurantsId) {
 
+	var restTitle = document.getElementById("resttitle");
+	var restAddress = document.getElementById("restaddress");
+	var restEmail = document.getElementById("restemail");
+	var restPhone = document.getElementById("restphone");
+	var loader = document.getElementById("loader");
+ 
+	restTitle.textContent = "";
+	restAddress.textContent = "";
+	restEmail.textContent = "";
+	restPhone.textContent = "";
+	
+	fetch(getRestaurantUrl(restaurantsId), restOptions).then(function (response) {
+		return response.json();
+	})
+		.then(function (data) {
+			console.log(data)
 
+			restTitle.textContent = data.data.location.name;
+			restAddress.textContent = "Address: " + data.data.location.address;
+			restEmail.textContent = "Email: " + data.data.overview.contact.email;
+			restPhone.textContent = "Phone: " + data.data.overview.contact.phone;
+			loader.style.display = 'none';
+		})
+};
 
 function displayCityRestaurants(data) {
 	console.log(data);
@@ -73,6 +95,8 @@ function displayCityRestaurants(data) {
 		var moreButton = document.createElement("button");
 		moreButton.type = "button";
 		moreButton.classList.add("more-button");
+		moreButton.setAttribute("data-bs-toggle", "modal");
+		moreButton.setAttribute("data-bs-target", "#restinfo");
 		moreButton.textContent = "More Info"
 		moreButton.addEventListener("click", function (event) {
 			event.preventDefault();
@@ -81,15 +105,13 @@ function displayCityRestaurants(data) {
 		var img = document.createElement("img");
 		img.classList.add("card-img");
 		img.setAttribute("src", data[i].thumbnail.photo.photoSizes[2].url);
-		
+
 		cardBody.append(cardTitle, cardText, cardRating, img, moreButton);
 		card.append(cardBody)
 		resultsContainerEl.appendChild(card);
 	}
 
 };
-
-
 
 function renderLocation(location) {
 
