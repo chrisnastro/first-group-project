@@ -1,6 +1,6 @@
 var userLocationInput = document.getElementById("location-input");
 var searchButton = document.getElementById("search-button");
-var resultsContainerEl = document.getElementById("results-container");
+var resultsContainer = document.querySelector("#results-container");
 var modal = document.getElementById('modal');
 var mainResults = document.getElementById("main-results");
 
@@ -74,13 +74,12 @@ function displayRestaurantDetails(restaurantsId) {
 function displayCityRestaurants(data) {
 	console.log(data);
 
-	resultsContainerEl.innerHTML = '';
+	resultsContainer.innerHTML = '';
 	for (let i = 0; i < 10; i++) {
 
-
-
 		var card = document.createElement("div");
-		card.classList.add("card");
+		card.classList.add("card", "col-6");
+		card.style.marginBottom = '10px';
 		var cardBody = document.createElement("div");
 		cardBody.classList.add("card-body");
 		var cardTitle = document.createElement("h5");
@@ -92,12 +91,19 @@ function displayCityRestaurants(data) {
 		var cardRating = document.createElement("p");
 		cardRating.classList.add("card-text");
 		cardRating.textContent = "Rating: " + data[i].averageRating;
+
+		// inserted the function to move the form container up
+		setTimeout(() => {
+			moveFormContainer();
+		}, 0);
+		
 		var moreButton = document.createElement("button");
 		moreButton.type = "button";
 		moreButton.classList.add("more-button");
 		moreButton.setAttribute("data-bs-toggle", "modal");
 		moreButton.setAttribute("data-bs-target", "#restinfo");
 		moreButton.textContent = "More Info"
+		
 		moreButton.addEventListener("click", function (event) {
 			event.preventDefault();
 			displayRestaurantDetails(data[i].restaurantsId)
@@ -108,10 +114,18 @@ function displayCityRestaurants(data) {
 
 		cardBody.append(cardTitle, cardText, cardRating, img, moreButton);
 		card.append(cardBody)
-		resultsContainerEl.appendChild(card);
+		resultsContainer.appendChild(card);
 	}
 
 };
+
+// function to move form container up after results are loaded
+function moveFormContainer() {
+	let formBody = document.querySelector(".form-body");
+	if(formBody){
+		formBody.style.bottom ="100px";
+	}
+}
 
 function renderLocation(location) {
 

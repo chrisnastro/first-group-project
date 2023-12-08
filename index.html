@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
@@ -14,8 +14,8 @@
 <body>
 
     <div class="container">
-        <div class="row">
-            <div class="form-body col-3">
+        <div class="flex-row">
+            <div class="form-body col-9">
                 <h2 class="search-title">Restaurant Locator</h2>
 
                 <form id="search-form">
@@ -25,19 +25,16 @@
                     <button id="search-button">Search!</button>
                 </form>
             </div>
-            <!-- more info results -->
 
-            <div id="results-container" class="col-9">
-                <div id="img"></div>
-                <div id="main-results"></div>
+
+            <div id="results-container" class="flex-container">
+                <div id="img"></div> 
+                <!-- cards will form in here -->
             </div>
         </div>
-
-
-        <!-- search results will appear here -->
-
     </div>
 
+    <!-- modal shows more info on each restaurant -->
     <div class="modal" id="restinfo" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
