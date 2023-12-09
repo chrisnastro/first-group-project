@@ -147,11 +147,6 @@ function renderLocation(location) {
 searchButton.addEventListener("click", function (event) {
 	event.preventDefault();
 	var location = userLocationInput.value;
-
-	console.log("location: ", location)
-
-	console.log("location datatype: ", typeof location)
-
 	localStorage.setItem("location-input", location);
 
 	renderLocation(location);

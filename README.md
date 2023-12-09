@@ -1,5 +1,9 @@
 # Cuisine Locator
 
+```
+Welcome to Cuisine Locator!  This website enables you to enter the name of any city and see local restaurant options.  You are given a thumbnail image from the restaurant, the type of cuisine the restaurant serves, and it's average rating from 0-5. By clicking the "More Info" button, the user can access the restaurants location, email address, and website. 
+```
+
 ## User Story
 
 ```
@@ -11,50 +15,18 @@ SO THAT I can satisfy my hunger
 ## Acceptance Criteria
 
 ```
-GIVEN a webpage with cuisine inputs
+GIVEN a webpage with a location input
 WHEN I search my location
-THEN I am presented with a list of local restaurants that match my selected cuisine
+THEN I am presented with a list of local restaurants
 WHEN I view the restaurants
-THEN I am presented with the name, address, phone number, and a thumbnail
+THEN I am presented with the name, cuisine type, rating, and a thumbnail
 WHEN I select a specific restaurant
-THEN I am presented with a map and a link to the menu
+THEN I am presented with the address, email, and phone number
+```
 
-## Project Requirements
 
-You and your group will use everything you’ve learned over the past six modules to create a real-world front-end application that you’ll be able to showcase to potential employers. The user story and acceptance criteria will depend on the project that you create, but your project must fulfil the following requirements:
+Github Repo: https://github.com/chrisnastro/first-group-project
 
-* Use a CSS framework other than Bootstrap.
+Deployed Site: https://chrisnastro.github.io/first-group-project/
 
-* Be deployed to GitHub Pages.
-
-* Be interactive (i.e., accept and respond to user input).
-
-* Use at least two [server-side APIs](https://coding-boot-camp.github.io/full-stack/apis/api-resources).
-
-* Does not use alerts, confirms, or prompts (use modals).
-
-* Use client-side storage to store persistent data.
-
-* Be responsive.
-
-* Have a polished UI.
-
-* Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
-
-* Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
-
-## Presentation Requirements
-
-Use this [project presentation template](https://docs.google.com/presentation/d/10QaO9KH8HtUXj__81ve0SZcpO5DbMbqqQr4iPpbwKks/edit?usp=sharing) to address the following: 
-
-* Elevator pitch: a one minute description of your application
-
-* Concept: What is your user story? What was your motivation for development?
-
-* Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
-
-* Demo: Show your stuff!
-
-* Directions for Future Development
-ß
-* Links to the deployed application and the GitHub repository
+![Deployed website screenshot](assets/images/screenshot.png)
